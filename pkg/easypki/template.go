@@ -71,4 +71,9 @@ func nonCATemplate(genReq *Request) {
 
 	// set the usage for non-CA certificates
 	genReq.Template.KeyUsage = x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment
+
+	// set the basic constraints indicating this is not a CA
+	genReq.Template.BasicConstraintsValid = true
+	genReq.Template.IsCA = false
+	genReq.Template.MaxPathLen = -1 // -1 is a magic value meaning "don't include a path length constraint"
 }
