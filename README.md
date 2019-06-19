@@ -1,6 +1,6 @@
 [![Build
-Status](https://travis-ci.org/google/easypki.svg?branch=master)](https://travis-ci.org/google/easypki)
-[![codecov](https://codecov.io/gh/google/easypki/branch/master/graph/badge.svg)](https://codecov.io/gh/google/easypki)
+Status](https://travis-ci.org/jpicht/easypki.svg?branch=master)](https://travis-ci.org/jpicht/easypki)
+[![codecov](https://codecov.io/gh/jpicht/easypki/branch/master/graph/badge.svg)](https://codecov.io/gh/jpicht/easypki)
 
 easypki
 ======
@@ -11,24 +11,12 @@ CLI.
 
 # API
 
-[![godoc](https://godoc.org/github.com/google/easypki?status.svg)](https://godoc.org/github.com/google/easypki)
+[![godoc](https://godoc.org/github.com/jpicht/easypki?status.svg)](https://godoc.org/github.com/jpicht/easypki)
 
 For the latest API:
 
 ```
-import "gopkg.in/google/easypki.v1"
-```
-
-## Legacy API
-
-API below pkg/ has been rewritten to allow extensibility in terms of PKI
-storage and better readability.
-
-If you used the legacy API that was only writing files to disk, a tag has been
-applied so you can still import it:
-
-```
-import "gopkg.in/google/easypki.v0"
+import "gopkg.in/jpicht/easypki.v1"
 ```
 
 # CLI
@@ -38,7 +26,7 @@ compatible with openssl, so you are not restrained.
 
 ```
 # Get the CLI:
-go get github.com/google/easypki/cmd/easypki
+go get github.com/jpicht/easypki/cmd/easypki
 
 
 # You can also pass the following through arguments if you do not want to use
@@ -83,4 +71,4 @@ For more info about available flags, checkout out the help `easypki -h`.
 
 # Disclaimer
 
-This is not an official Google product.
+This is not based on an official Google product.
