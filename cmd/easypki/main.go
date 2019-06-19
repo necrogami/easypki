@@ -106,6 +106,19 @@ func (r *router) create(c *cli.Context) {
 		template.DNSNames = c.StringSlice("dns")
 	}
 
+	ncInclude := c.StringSlice("name-constraint-include")
+	ncExclude := c.StringSlice("name-constraint-exclude")
+	if len(ncInclude) > 0 || len(ncExclude) > 0 {
+		if !template.IsCA {
+			cli.ShowSubcommandHelp(c)
+			log.Fatalf("name constraints can only be added to (intermediate) cas")
+		}
+
+		template.PermittedDNSDomainsCritical = true
+		template.PermittedDNSDomains = ncInclude
+		template.ExcludedDNSDomains = ncExclude
+	}
+
 	req := &easypki.Request{
 		Name:                filename,
 		Template:            template,
@@ -255,6 +268,14 @@ func (r *router) run() {
 					Name:   "province",
 					Usage:  "province/state",
 					EnvVar: "PKI_PROVINCE",
+				},
+				cli.StringSliceFlag{
+					Name:  "name-constraint-include",
+					Usage: "name constraint include",
+				},
+				cli.StringSliceFlag{
+					Name:  "name-constraint-exclude",
+					Usage: "name constraint exclude",
 				},
 				cli.StringSliceFlag{
 					Name:  "dns, d",
