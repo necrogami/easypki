@@ -83,7 +83,15 @@ func (r *router) create(c *cli.Context) {
 	isRootCa := c.Bool("ca")
 	if !isRootCa {
 		var err error
-		signer, err = r.PKI.GetCA(c.String("ca-name"))
+		var caName = c.String("ca-name")
+
+		signer, err = r.PKI.GetCA(caName)
+		if err != nil {
+			caName = strings.Replace(caName, " ", "_", -1)
+			caName = strings.Replace(caName, "*", "wildcard", -1)
+		}
+
+		signer, err = r.PKI.GetCA(caName)
 		if err != nil {
 			log.Fatal(err)
 		}
